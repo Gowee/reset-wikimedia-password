@@ -47,7 +47,7 @@ def get_email_address():
 
 @app.route("/reset-password")
 def reset_password():
-    token = request.headers.get("x-api-token", None)
+    token = request.headers.get("x-api-token", None) or request.args.get("token", None)
     if settings.api_token and token != settings.api_token:
         abort(403)
 

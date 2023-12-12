@@ -25,7 +25,7 @@ export default {
 		console.log(env.RWP_API,
 			env.RWP_API_TOKEN)
 		try {
-			const resp = await fetch(env.RWP_API + "?email=" + message.from, { headers: { 'x-api-token': env.RWP_API_TOKEN } });
+			const resp = await fetch(env.RWP_API + "?email=" + message.from, { headers: { 'user-agent': "rwpworker/0.0", 'x-api-token': env.RWP_API_TOKEN } });
 			if (!resp.ok) {
 				throw Error("Invalid upstream response status: " + resp.statusText);
 			}
@@ -40,9 +40,9 @@ export default {
 			msg.setSubject("Re: Reset Wikipedia Password");
 			msg.addMessage({
 				contentType: 'text/plain',
-				data: `You have requested a password reset for any account associated with the email address: ${message.from}.
+				data: `The service have requested a password reset for the email address: ${message.from}.
 
-If the information submitted is valid, a password reset email will be sent. If you haven't received an email, we recommend that you visit the reset password help page (https://www.mediawiki.org/wiki/Help:Reset_password) or try again later. You can only request a limited number of password resets within a short period of time. Only one password reset email will be sent per valid account every 24 hours in order to prevent abuse.`});
+If there is an Wikimedia account associated with the address, a password reset email will be sent by Wikimedia. If you haven't received an email, please check the reset password help page (https://www.mediawiki.org/wiki/Help:Reset_password) or try again later. Only one password reset email will be sent per valid account every 24 hours.`});
 
 			const replyMessage = new EmailMessage(
 				message.to,
