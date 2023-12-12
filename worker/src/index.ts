@@ -40,7 +40,7 @@ export default {
 			msg.setSubject("Re: Reset Wikipedia Password");
 			msg.addMessage({
 				contentType: 'text/plain',
-				data: `The service have requested a password reset for the email address: ${message.from}.
+				data: `The service has requested a password reset for the email address: ${message.from}.
 
 If there is an Wikimedia account associated with the address, a password reset email will be sent by Wikimedia. If you haven't received an email, please check the reset password help page (https://www.mediawiki.org/wiki/Help:Reset_password) or try again later. Only one password reset email will be sent per valid account every 24 hours.`});
 
