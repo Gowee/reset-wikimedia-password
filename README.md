@@ -1,1 +1,1 @@
-# reset-wikipedia-password
+# reset-wikimedia-password

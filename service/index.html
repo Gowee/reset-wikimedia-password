@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Wikimedia Password</title>
+</head>
+<body>
+    <h1>Reset Wikimedia Password</h1>
+    <noscript>Unfortunately, the webpage relies on JavaScript to load email addresses.</noscript> 
+
+    <p>The unofficial tool helps reset Wikimedia password from blocked IP ranges.</p>
+    <p>
+        Just send an email to <a id="inbox-address" href="mailto:">LOADING</a> from the email address associated with the lost account. 
+        An email from Wikimedia with a temporay password should be sent back.
+    </p>
+    <hr>
+    <p><small>For questions, check <a href="https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Reset_password">the offcial help page</a> at first. Please contact the operator via <a id="contact-address" href="mailto:">LOADING</a> if the service is believed to be broken.</small></a>
+</body>
+<script>
+    (async() => {
+        const resp = await fetch("/get-email-addresses")
+        const addresses = await resp.json()
+        const inbox = addresses?.inbox ?? "FAILED-TO-LOAD"
+        const contact = addresses?.contact ?? "FAILED-TO-LOAD"
+
+        function setEmailAddress(e, address) {
+            e.innerHTML = address
+            e.href = "mailto:" + address
+        }
+
+        setEmailAddress(document.querySelector("#inbox-address"), inbox)
+        setEmailAddress(document.querySelector("#contact-address"), contact)
+    })()
+</script>
+</html>

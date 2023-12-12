@@ -1,0 +1,7 @@
+name = "some-worker"
+main = "src/index.ts"
+compatibility_date = "2023-12-06"
+
+[vars]
+RWP_API = "https://some-service.example.com/reset-password"
+RWP_API_TOKEN = "some-token"

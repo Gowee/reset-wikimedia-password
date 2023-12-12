@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = ""
+authors = ["Hung-I <whygowe@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mwclient = "^0.10.1"
+fastapi = "^0.104.1"
+asyncer = "^0.0.2"
+pydantic-settings = "^2.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
