@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 
 from typing import Annotated, Optional
-# from fastapi import FastAPI, Header, Depends, HTTPException
-# from fastapi.responses import HTMLResponse
 from mwclient import Site
-from asyncer import asyncify
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from flask import Flask, abort, request
 
