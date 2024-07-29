@@ -42,7 +42,10 @@ export default {
 				contentType: 'text/plain',
 				data: `The service has requested a password reset for the email address: ${message.from}.
 
-If there is an Wikimedia account associated with the address, a password reset email will be sent by Wikimedia. If you haven't received an email, please check the reset password help page (https://www.mediawiki.org/wiki/Help:Reset_password) or try again later. Only one password reset email will be sent per valid account every 24 hours.`});
+If there is an Wikimedia account associated with the address, a password reset email will be sent by Wikimedia. If you haven't received an email, please check the reset password help page (https://www.mediawiki.org/wiki/Help:Reset_password) or try again later. Only one password reset email will be sent per valid account every 24 hours.
+
+Be noted that the temporary password in the email you receive CAN ONLY BE USED on the wiki project indicated by that email. It won't affect resetting your password across all Wikimedia projects, though.
+`});
 
 			const replyMessage = new EmailMessage(
 				message.to,
