@@ -3,7 +3,8 @@
 from typing import Annotated, Optional
 from mwclient import Site
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from flask import Flask, abort, request
+from flask import Flask, abort, request, Response
+from flask_cors import cross_origin
 
 
 class Settings(BaseSettings):
@@ -13,6 +14,7 @@ class Settings(BaseSettings):
     wikimedia_username: Optional[str] = None
     wikimedia_password: Optional[str] = None
     api_token: Optional[str] = None
+    allow_cors_origin: Optional[str] = None
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
@@ -41,8 +43,13 @@ def root():
 
 
 @app.route("/get-email-addresses")
+@cross_origin(origins=settings.allow_cors_origin or "null")
 def get_email_address():
-    return {"inbox": settings.inbox_address, "contact": settings.contact_address}
+    callback = request.args.get("callback", None)
+    if not callback or "(" in callback:
+        return {"inbox": settings.inbox_address, "contact": settings.contact_address}
+    else:
+        return Response(f'{callback}("{settings.inbox_address}", "{settings.contact_address}")', mimetype="text/javascript")
 
 
 @app.route("/reset-password")
